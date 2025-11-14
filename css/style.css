@@ -1,7 +1,7 @@
 :root {
   --primary-blue: #1e90ff;
   --light-blue: #f4f9ff;
-  --dark-blue: #0413e7;
+  --dark-blue: #ffffff;
   --text-color: #333;
   --font-sans: 'Segoe UI', Roboto, Arial, sans-serif;
 }
@@ -23,7 +23,7 @@ body {
 /* Header */
 header {
   background: var(--dark-blue);
-  color: #fff;
+  color: #161685;
   padding: 1rem 0;
 }
 
@@ -53,7 +53,7 @@ nav ul {
 }
 
 nav a {
-  color: #fff;
+  color: #161685;
   text-decoration: none;
   font-weight: 500;
 }
@@ -226,6 +226,7 @@ footer {
     align-items: center;
   }
 }
+
 
 
 
