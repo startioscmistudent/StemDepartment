@@ -40,9 +40,9 @@ header {
 
 /* Logo Image */
 .logo-img {
-  height: 10px;
+  height: 120px;
   width: auto;
-  margin-right: 10px;
+  margin-right: 120px;
 }
 
 nav ul {
@@ -226,4 +226,5 @@ footer {
     align-items: center;
   }
 }
+
 
