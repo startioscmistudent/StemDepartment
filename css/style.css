@@ -209,7 +209,7 @@ button.cta-btn {
 /* Footer */
 footer {
   background: var(--dark-blue);
-  color: #fff;
+  color: #003cff;
   text-align: center;
   padding: 1rem 0;
   font-size: 0.9rem;
@@ -226,3 +226,4 @@ footer {
     align-items: center;
   }
 }
+
