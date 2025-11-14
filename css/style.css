@@ -1,6 +1,6 @@
 :root {
-  --primary-blue: #1e90ff;
-  --light-blue: #f4f9ff;
+  --primary-blue: #003cff;
+  --light-blue: #0a74da;
   --dark-blue: #ffffff;
   --text-color: #333;
   --font-sans: 'Segoe UI', Roboto, Arial, sans-serif;
@@ -226,11 +226,3 @@ footer {
     align-items: center;
   }
 }
-
-
-
-
-
-
-
-
