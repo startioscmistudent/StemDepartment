@@ -38,6 +38,13 @@ header {
   font-weight: bold;
 }
 
+/* Logo Image */
+.logo-img {
+  height: 120px;
+  width: auto;
+  margin-right: 120px;
+}
+
 nav ul {
   list-style: none;
   display: flex;
