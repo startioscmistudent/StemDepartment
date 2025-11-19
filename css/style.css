@@ -184,6 +184,7 @@ nav a:hover {
 
 .form-group {
   margin-bottom: 1.8rem;
+  width: 36rem;
 }
 
 label {
@@ -227,3 +228,4 @@ footer {
     align-items: center;
   }
 }
+
