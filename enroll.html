@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ICT & Computing Science Programs – STEM Department</title>
+<link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+<!-- Header -->
+<header>
+  <div class="container header-container">
+    <!-- Logo Image Placeholder -->
+    <img src="img/cmi logo.avif" alt="CMI Logo" class="logo-img">
+    
+    <h1 class="logo">STEM Department</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Programs</a></li>
+        <li><a href="ICTPathways.html">ICT Pathways</a></li>
+        <li><a href="instructors.html">Our Faculty</a></li>
+        <li><a href="enroll.html">Apply</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+ <!-- Enrollment -->
+  <section id="enroll" class="cta container">
+    <h2>Ready to Apply?</h2>
+    <p>Take your first step toward a future in technology. Fill out the form below to register your interest.</p>
+    <form class="enroll-form" action="#" method="POST">
+      <div class="form-group">
+        <label for="name">Full Name:</label>
+        <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email Address:</label>
+        <input type="email" id="email" name="email" placeholder="Enter your email address" required>
+      </div>
+
+      <button type="submit" class="cta-btn">Submit Application</button>
+    </form>
+  </section>
+
+    <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>&copy; <span id="year"></span> College of the Marshall Islands – STEM Department. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
