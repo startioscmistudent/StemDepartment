@@ -1,6 +1,6 @@
 :root {
   --primary-blue: #003cff;
-  --light-blue: #0a74da;
+  --light-blue: #3c93f7;
   --dark-blue: #ffffff;
   --text-color: #333;
   --font-sans: 'Segoe UI', Roboto, Arial, sans-serif;
@@ -9,7 +9,7 @@
 body {
   font-family: var(--font-sans);
   margin: 0;
-  background: #fff;
+  background: #a9bcfc;
   color: var(--text-color);
   line-height: 1.6;
 }
@@ -115,6 +115,7 @@ nav a:hover {
   flex-wrap: wrap;
   justify-content: center;
   margin-top: 2rem;
+  margin-bottom: 15rem;
 }
 
 .instructor-card {
@@ -173,7 +174,7 @@ nav a:hover {
 .enroll-form {
   max-width: 600px;
   margin: 2rem auto 0;
-  background: #fff;
+  background: #ffffff;
   padding: 2rem;
   border-radius: 8px;
   text-align: left;
@@ -182,7 +183,7 @@ nav a:hover {
 }
 
 .form-group {
-  margin-bottom: 1.2rem;
+  margin-bottom: 1.8rem;
 }
 
 label {
@@ -226,4 +227,3 @@ footer {
     align-items: center;
   }
 }
-
