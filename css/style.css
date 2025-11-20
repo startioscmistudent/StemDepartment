@@ -107,6 +107,126 @@ nav a:hover {
   border: 1px solid #eee;
   text-align: center;
 }
+/* Video Section */
+.video-section {
+  text-align: center;
+  margin: 2rem 0;
+}
+
+.video-section video {
+  width: 60%;          
+  max-width: 700px;   
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+/* Hands On Activities */
+.hands-on {
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
+
+.hands-on h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #161685;
+}
+
+.hands-on-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.hands-on-grid img {
+  width: 100%;
+  border-radius: 8px;
+  object-fit: cover;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Normal-width slideshow container */
+.fullwidth-slideshow {
+  width: 100%;
+  margin-top: 3rem;
+  text-align: center;
+}
+
+.slideshow-wrapper {
+  width: 80%;           
+  max-width: 900px;     
+  margin: 0 auto;       
+  position: relative;
+  overflow: hidden;
+}
+
+.slide img {
+  width: 100%;
+  height: 550px;        
+  object-fit: cover;
+  border-radius: 10px;
+  display: block;
+}
+
+/* Arrows */
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  padding: 16px;
+  color: white;
+  font-weight: bold;
+  font-size: 30px;
+  background: rgba(0,0,0,0.3);
+  border-radius: 4px;
+  user-select: none;
+  z-index: 10;
+  transition: 0.3s;
+}
+
+.prev:hover, .next:hover {
+  background: rgba(0,0,0,0.6);
+}
+
+.prev {
+  left: 10px;
+}
+
+.next {
+  right: 10px;
+}
+
+/* Dots */
+.dots {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.dot {
+  cursor: pointer;
+  height: 14px;
+  width: 14px;
+  margin: 0 4px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: 0.3s;
+}
+
+.active, .dot:hover {
+  background-color: #717171;
+}
+
+/* Fade animation */
+.fade {
+  animation: fadeEffect 1s;
+}
+
+@keyframes fadeEffect {
+  from { opacity: 0.4; }
+  to { opacity: 1; }
+}
+
 
 /* Instructors */
 .instructor-grid {
@@ -183,7 +303,7 @@ nav a:hover {
 }
 
 .form-group {
-  margin-bottom: 1.8rem;
+  margin-bottom: 0.8rem;
   width: 36rem;
 }
 
@@ -228,4 +348,6 @@ footer {
     align-items: center;
   }
 }
+
+
 
