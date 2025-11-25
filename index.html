@@ -7,24 +7,31 @@
 <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
-<!-- Header -->
 <header>
-  <div class="container header-container">
-    <!-- Logo Image Placeholder -->
-    <img src="img/cmi logo.avif" alt="CMI Logo" class="logo-img">
-    
-    <h1 class="logo">STEM Department</h1>
-    <nav>
-      <ul>
-        <li><a href="index.html">Program</a></li>
-        <li><a href="ICTPathways.html">ICT Pathways</a></li>
-        <li><a href="instructors.html">Our Faculty</a></li>
-        <li><a href="enroll.html">Apply</a></li>
-      </ul>
-    </nav>
+  <!-- First Row: Logo + Title -->
+  <div class="header-top">
+    <a href="https://www.cmi.edu/" target="_blank" rel="noopener noreferrer" aria-label="College of the Marshall Islands homepage">
+      <img src="img/cmi logo.avif" alt="CMI Logo" class="logo-img">
+    </a>
+    <h1 class="header-title">STEM Department</h1>
   </div>
-</header>
 
+  <!-- Mobile hamburger (shown on small screens) -->
+<button class="hamburger" aria-label="Toggle navigation" aria-expanded="false" aria-controls="main-nav">
+  <span></span><span></span><span></span>
+</button>
+
+  <!-- Second Row: Navigation Links -->
+  <nav id="main-nav" class="header-nav" role="navigation">
+    <ul>
+      <li><a href="index.html">Program</a></li>
+      <li><a href="ICTPathways.html">ICT Pathways</a></li>
+      <li><a href="courses.html">Courses</a></li>
+      <li><a href="instructors.html">Our Instructors</a></li>
+      <li><a href="enroll.html">Apply</a></li>
+    </ul>
+  </nav>
+</header>
 <!--Video-->
 <section class="video-section">
     <video controls="video">
@@ -37,7 +44,7 @@
   <section class="hero">
     <div class="container">
       <h2>Explore ICT & Computing Science Programs</h2>
-      <p>Prepare for the future with hands-on, industry-relevant education in technology, coding, and innovation.</p>
+      <p class="hero-subtitle">Prepare for the future with hands-on, industry-relevant education in technology, coding, and innovation.</p>
       <a href="enroll.html" class="cta-btn">Apply Now</a>
     </div>
   </section>
@@ -170,12 +177,55 @@ function showSlides(n) {
   <!-- Footer -->
   <footer>
     <div class="container">
-      <p>&copy; <span id="year"></span> College of the Marshall Islands – STEM Department. All rights reserved.</p>
+      <p>&copy; <span id="year"></span> <a href="https://www.cmi.edu/" target="_blank" rel="noopener noreferrer">College of the Marshall Islands</a> – STEM Department. All rights reserved.</p>
     </div>
   </footer>
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
+<script>
+(function() {
+  const btn = document.querySelector('.hamburger');
+  const nav = document.getElementById('main-nav') || document.querySelector('.header-nav');
+  if (!btn || !nav) return;
+
+  const MOBILE_BREAKPOINT = 768;
+  function setAria(open) {
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    btn.classList.toggle('is-active', open);
+  }
+
+  btn.addEventListener('click', () => {
+    const isOpen = nav.classList.toggle('open');
+    setAria(isOpen);
+  });
+
+  // Close nav when link clicked
+  nav.addEventListener('click', (e) => {
+    if (e.target.tagName === 'A' && nav.classList.contains('open')) {
+      nav.classList.remove('open');
+      setAria(false);
+    }
+  });
+
+  // Ensure nav closes if viewport becomes desktop
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > MOBILE_BREAKPOINT && nav.classList.contains('open')) {
+      nav.classList.remove('open');
+      setAria(false);
+    }
+  });
+
+  // Close on Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && nav.classList.contains('open')) {
+      nav.classList.remove('open');
+      setAria(false);
+      btn.focus();
+    }
+  });
+})();
+</script>
 </body>
 </html>
