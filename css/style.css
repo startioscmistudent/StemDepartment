@@ -12,6 +12,9 @@ body {
   background: #a9bcfc;
   color: var(--text-color);
   line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 .container {
@@ -20,42 +23,91 @@ body {
   margin: 0 auto;
 }
 
-/* Header */
+/* Ensure footer stays at bottom of short pages */
+html, body {
+  height: 100%;
+}
+
+.site-main {
+  flex: 1; /* main content expands to push footer down */
+}
+
+/* Header Container */
 header {
   background: var(--dark-blue);
-  color: #161685;
   padding: 1rem 0;
+  text-align: center;
 }
 
-.header-container {
+/* First row: logo + title */
+.header-top {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
 }
 
-.logo {
-  font-size: 1.5rem;
-  font-weight: bold;
-}
-
-/* Logo Image */
+/* Logo */
 .logo-img {
-  height: 120px;
+  height: 90px;
   width: auto;
-  margin-right: 120px;
 }
 
-nav ul {
-  list-style: none;
-  display: flex;
-  gap: 1.5rem;
+/* Title */
+.header-title {
+  font-size: 1.8rem;
+  color: #161685;
   margin: 0;
+  font-weight: 700;
+  height: 90px;           /* match logo height */
+  display: flex;          /* vertically center text */
+  align-items: center;    /* vertically center text */
+  line-height: 1;         /* avoid extra spacing */
 }
 
-nav a {
+/* Second row: navigation */
+.header-nav ul {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  list-style: none;
+  margin: 0.8rem 0 0 0;
+  padding: 0;
+}
+
+.header-nav a {
   color: #161685;
   text-decoration: none;
-  font-weight: 500;
+  font-weight: 600;
+}
+
+.header-nav a:hover {
+  text-decoration: underline;
+}
+
+/* =========================
+   MOBILE ADJUSTMENTS
+   ========================= */
+@media (max-width: 768px) {
+  .header-top {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .logo-img {
+    height: 75px;
+  }
+
+  .header-title {
+    font-size: 1.5rem;
+  }
+
+  .header-nav ul {
+    flex-direction: column;
+    gap: 0.7rem;
+  }
 }
 
 nav a:hover {
@@ -72,6 +124,11 @@ nav a:hover {
 .hero h2 {
   font-size: 2rem;
   color: var(--dark-blue);
+}
+
+/* Hero subtitle color */
+.hero-subtitle {
+  color: #ffffff;
 }
 
 .cta-btn {
@@ -107,6 +164,7 @@ nav a:hover {
   border: 1px solid #eee;
   text-align: center;
 }
+
 /* Video Section */
 .video-section {
   text-align: center;
@@ -257,27 +315,10 @@ nav a:hover {
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
 }
 
-/* Schedule Table */
-.schedule table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 1.5rem;
-}
-
-.schedule caption {
-  font-weight: bold;
-  margin-bottom: 0.5rem;
-}
-
-.schedule th, .schedule td {
-  border: 1px solid #ddd;
-  padding: 0.75rem;
-  text-align: center;
-}
-
-.schedule th {
-  background: var(--primary-blue);
-  color: #fff;
+/* Center the H2 in the instructors section */
+.instructor.container h2 {
+    text-align: center;
+    margin: 1rem 0 1rem; /* adjust spacing as needed */
 }
 
 /* CTA Section */
@@ -290,42 +331,110 @@ nav a:hover {
   margin: 4rem auto;
 }
 
-/* Form */
-.enroll-form {
-  max-width: 600px;
-  margin: 2rem auto 0;
-  background: #ffffff;
-  padding: 2rem;
-  border-radius: 8px;
-  text-align: left;
-  color: var(--text-color);
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+/* Apply Section */
+.enroll {
+  text-align: center;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
 }
 
-.form-group {
-  margin-bottom: 0.8rem;
-  width: 36rem;
+.enroll h2 {
+  color: #161685;
+  margin-bottom: 0.5rem;
 }
 
-label {
-  display: block;
-  margin-bottom: 0.4rem;
-  font-weight: 600;
-  color: var(--dark-blue);
-}
-
-input, select {
-  width: 100%;
-  padding: 0.7rem;
-  border-radius: 5px;
-  border: 1px solid #ccc;
+.enroll p {
   font-size: 1rem;
+  margin-bottom: 2rem;
 }
 
-button.cta-btn {
+/* Form Container */
+.enroll-form {
+  background: #0a74da;
+  padding: 3rem; /* reduced from 7rem */
+  border-radius: 11px;
+  max-width: 380px; /* narrower on desktop */
+  margin: 0 auto;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* Center the form and make inputs full width */
+.enroll-form {
+  max-width: 380px; /* keep consistent */
   width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  align-items: stretch;
+}
+.enroll-form .form-group label {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-weight: 600;
+}
+.enroll-form .form-group input[type="text"],
+.enroll-form .form-group input[type="email"],
+.enroll-form .form-group input[type="tel"] {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  background: #fff;
+  color: #111;
+}
+
+/* Center the submit button and make it responsive */
+/* REPLACED: make enroll button use the same CTA style as "Apply Now" */
+.enroll-form .cta-btn {
+  /* Use global CTA styles for consistency with index.html */
+  background: var(--primary-blue);
+  color: #fff;
+  padding: 0.8rem 1.5rem;
+  border-radius: 5px;
+  text-decoration: none;
+  display: inline-block;
+  margin: 1rem auto 0;
+  font-weight: 600;
   border: none;
   cursor: pointer;
+  text-align: center;
+  min-width: 0;
+  width: auto;
+}
+
+/* keep hover and focus consistent */
+.enroll-form .cta-btn:hover {
+  background: #0a74da;
+}
+.enroll-form .cta-btn:focus {
+  outline: 3px solid rgba(0,120,212,0.25);
+  outline-offset: 2px;
+}
+
+/* Small-screen tweaks */
+@media (max-width: 480px) {
+  .enroll.container { padding-left: 1rem; padding-right: 1rem; }
+  .enroll-form { gap: 0.6rem; }
+  .enroll-form .cta-btn { width: 100%; min-width: 0; }
+}
+
+/* Success Page */
+.success {
+  text-align: center;
+  margin-top: 4rem;
+}
+
+.success h2 {
+  color: #161685;
+  margin-bottom: 1rem;
+}
+
+.success .cta-btn {
+  margin-top: 2rem;
+  display: inline-block;
 }
 
 /* Footer */
@@ -335,6 +444,7 @@ footer {
   text-align: center;
   padding: 1rem 0;
   font-size: 0.9rem;
+  width: 100%;
 }
 
 /* Responsive */
@@ -349,5 +459,464 @@ footer {
   }
 }
 
+/* Courses Page */
+.courses {
+  margin: 3rem auto;
+}
+
+.course-row {
+  background: #fafafa;
+  padding: 1.8rem 1.5rem;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  margin-bottom: 2rem;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.05);
+}
+
+.course-row h3 {
+  font-size: 1.4rem;
+  color: #4340f8;
+  margin-bottom: 0.8rem;
+}
+
+.course-row p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #333;
+}
+
+/* Courses page subtitle color */
+.courses-subtitle {
+  color: #ffffff;
+}
+
+/* Icons before course titles */
+.course-row h3 i {
+  color: #003cff;          /* Icon color matches title */
+  margin-right: 0.6rem;    /* Spacing between icon and text */
+  font-size: 1.2rem;
+  vertical-align: middle;
+}
+
+/* Optional: slightly smaller on mobile */
+@media (max-width: 768px) {
+  .course-row h3 i {
+    font-size: 1rem;
+  }
+}
+
+/* Responsive for Mobile */
+@media (max-width: 768px) {
+  .course-row {
+    padding: 1.5rem 1rem;
+  }
+
+  .course-row h3 {
+    font-size: 1.2rem;
+  }
+
+  .course-row p {
+    font-size: 0.95rem;
+  }
+}
+
+/* ==========================================================
+   FULL WEBSITE MOBILE LAYOUT FIX (≤ 768px)
+   Makes every section symmetrical & responsive
+   ========================================================== */
+@media (max-width: 768px) {
+
+  /* GENERAL */
+  body {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+  }
+
+  .container {
+    width: 94%;
+    margin: 0 auto;
+  }
+
+  /* ------------------------------------------
+     HEADER (Centered logo, title, nav)
+     ------------------------------------------ */
+  header {
+    padding: 1.5rem 0;
+  }
+
+  .header-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .logo-img {
+    height: 85px;
+    margin-bottom: 0.5rem;
+  }
+
+  .logo {
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+  }
+
+  .header-nav ul {
+    flex-direction: column;
+    gap: 0.9rem;
+    text-align: center;
+    padding: 0;
+  }
+
+  /* ------------------------------------------
+     HERO SECTION
+     ------------------------------------------ */
+  .hero {
+    padding: 2rem 1rem;
+  }
+
+  .hero h2 {
+    font-size: 1.6rem;
+  }
+
+  .hero p {
+    width: 90%;
+    margin: 0.5rem auto 1.2rem auto;
+    font-size: 1rem;
+  }
+
+  .cta-btn {
+    padding: 0.7rem 1.2rem;
+    font-size: 1rem;
+  }
+
+  /* ------------------------------------------
+     VIDEO SECTION
+     ------------------------------------------ */
+  .video-section video {
+    width: 95%;
+    max-height: 250px;
+  }
+
+  /* ------------------------------------------
+     PROGRAM OVERVIEW (About Section)
+     ------------------------------------------ */
+  #overview p {
+    font-size: 1rem;
+    width: 95%;
+    margin: 0 auto;
+  }
+
+  .program-list {
+    padding-left: 0;
+    list-style: none;
+  }
+
+  .program-list li {
+    margin-bottom: 0.6rem;
+  }
+
+  /* ------------------------------------------
+     FEATURES SECTION
+     ------------------------------------------ */
+  .feature-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .feature {
+    padding: 1.2rem;
+  }
+
+  /* ------------------------------------------
+     HANDS-ON SLIDESHOW
+     ------------------------------------------ */
+  .slideshow-wrapper {
+    width: 100%;
+  }
+
+  .slide img {
+    height: 250px;
+    border-radius: 6px;
+  }
+
+  .prev, .next {
+    padding: 10px;
+    font-size: 20px;
+  }
+
+  .dots {
+    margin-bottom: 1rem;
+  }
+
+  /* ------------------------------------------
+     INSTRUCTORS SECTION
+     ------------------------------------------ */
+  .instructor-grid {
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 4rem;
+  }
+
+  .instructor-card {
+    width: 85%;
+    padding: 1rem;
+  }
+
+  .instructor-card img {
+    width: 130px;
+    height: 130px;
+  }
+
+  /* ------------------------------------------
+     SCHEDULE TABLE
+     ------------------------------------------ */
+  .schedule table {
+    font-size: 0.85rem;
+  }
+
+  .schedule th,
+  .schedule td {
+    padding: 0.5rem;
+  }
+
+  /* ------------------------------------------
+     FORM / ENROLL SECTION
+     ------------------------------------------ */
+@media (max-width: 480px) {
+  .enroll-form {
+    max-width: 310px;
+    padding: 1.4rem;
+  }
+}
+
+  .form-group {
+    width: 100%;
+  }
+
+  input,
+  select {
+    font-size: 1rem;
+    padding: 0.7rem;
+    width: 18rem;
+  }
+
+  /* ------------------------------------------
+     CTA SECTION
+     ------------------------------------------ */
+  .cta {
+    padding: 2rem 1rem;
+    margin: 2rem auto;
+  }
+
+  /* ------------------------------------------
+     FOOTER
+     ------------------------------------------ */
+  footer {
+    padding: 1rem 0;
+    font-size: 0.85rem;
+  }
+}
+
+/* Animated Success Checkmark */
+.checkmark-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.checkmark {
+  width: 90px;
+  height: 90px;
+  stroke-width: 3;
+  stroke-miterlimit: 10;
+}
+
+.checkmark-circle {
+  stroke: #4CAF50;
+  stroke-dasharray: 166;
+  stroke-dashoffset: 166;
+  animation: stroke-circle 0.6s ease-in-out forwards;
+}
+
+.checkmark-check {
+  stroke: #4CAF50;
+  stroke-dasharray: 48;
+  stroke-dashoffset: 48;
+  animation: stroke-check 0.4s 0.6s ease-in-out forwards;
+}
+
+@keyframes stroke-circle {
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes stroke-check {
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
 
 
+
+/* Mobile behavior: show hamburger, hide nav by default */
+@media (max-width: 768px) {
+  .hamburger { display: inline-flex; }
+  
+.hamburger span {
+  display: block;
+  height: 3px;
+  background: #161685;  /* same color as header title */
+  margin: 6px 0;
+  border-radius: 2px;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+  /* place hamburger under logo/title and above nav */
+  header { display: block; }
+
+  /* hide nav initially on mobile */
+  .header-nav {
+    display: none;
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 0.5rem;
+  }
+
+  /* when open, show nav as block (stacked links) */
+  .header-nav.open {
+    display: block;
+  }
+  .header-nav ul {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    padding: 0.6rem 0;
+    margin: 0;
+    list-style: none;
+  }
+  .header-nav a {
+    display: block;
+    padding: 0.6rem 0.8rem;
+    color: var(--primary-blue);
+    text-decoration: none;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 6px;
+  }
+  .header-nav a:hover {
+    background: rgba(255, 255, 255, 0.04);
+  }
+}
+.hamburger.is-active span:nth-child(1) {
+  transform: translateY(9px) rotate(45deg);
+}
+.hamburger.is-active span:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.is-active span:nth-child(3) {
+  transform: translateY(-9px) rotate(-45deg);
+}
+
+/* Keep previous selector fallback if using aria-expanded attr */
+.hamburger[aria-expanded="true"] span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+.hamburger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.hamburger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
+
+/* Make sure nav shows when .open applied (mobile) */
+.header-nav.open {
+  display: block !important;
+}
+@media (max-width: 768px) {
+  .header-nav { display: none; } /* hide by default on mobile */
+}
+
+/* Ensure the application form (or any table inside) is constrained and responsive */
+.enroll .form-wrap {
+  width: 100%;
+  max-width: 640px; /* desktop max width for the application box */
+  margin: 0 auto;
+  box-sizing: border-box;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+/* Keep the form boxed and centered; keep it more compact on desktop */
+.enroll-form {
+  max-width: 520px; /* narrower form inside the wrapper */
+  width: 100%;
+  margin: 0 auto;
+  padding: 1.6rem;      /* reduce if needed */
+  box-sizing: border-box;
+}
+
+/* Table inside the application (if any) */
+.enroll .form-table {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  border-collapse: collapse;
+  table-layout: fixed; /* forces content to wrap and avoid overflow */
+  word-wrap: break-word;
+}
+.enroll .form-table th,
+.enroll .form-table td {
+  padding: 0.5rem;
+  vertical-align: top;
+}
+
+/* Mobile adjustments: stack labels/inputs if a table is used */
+@media (max-width: 480px) {
+  .enroll .form-wrap { padding-left: 0.75rem; padding-right: 0.75rem; }
+  .enroll .form-table, .enroll .form-table tbody, .enroll .form-table tr { display: block; width: 100%; }
+  .enroll .form-table td, .enroll .form-table th { display: block; width: 100%; }
+}
+
+/* Hamburger: hide by default (desktop) and show only on mobile */
+.hamburger {
+  display: none; /* hidden on desktop */
+  background: transparent;
+  border: 0;
+  padding: 0.25rem;
+  margin: 0.5rem auto 0;
+  cursor: pointer;
+  width: 44px;
+  height: 36px;
+  align-self: center;
+}
+
+/* already present: show on mobile breakpoint */
+@media (max-width: 768px) {
+  .hamburger {
+    display: inline-flex; /* override desktop hide */
+  }
+}
+
+/* Make text in application box white; keep inputs readable */
+.enroll .form-wrap,
+.enroll .form-wrap h2,
+.enroll .form-wrap p,
+.enroll .form-wrap label,
+.enroll .form-wrap legend,
+.enroll .form-wrap .form-table th,
+.enroll .form-wrap .form-table td {
+  color: #ffffff; /* white text for the app box */
+}
+
+/* Keep inputs (and placeholders) legible */
+.enroll .form-wrap input,
+.enroll .form-wrap textarea,
+.enroll .form-wrap select {
+  background: #ffffff; /* keep input background white */
+  color: #111;         /* dark input text */
+  border: 1px solid #ccc;
+}
+.enroll .form-wrap input::placeholder {
+  color: #6b6b6b; /* subtle placeholder color */
+}
+
+/* Ensure CTA button contrasts on the blue background */
+.enroll .form-wrap .cta-btn {
+  background: var(--primary-blue, #0a74da);
+  color: #fff;
+}
