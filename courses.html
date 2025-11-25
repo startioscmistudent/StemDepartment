@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ICT & Computing Science Programs – STEM Department</title>
+<link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+<header>
+  <!-- First Row: Logo + Title -->
+  <div class="header-top">
+    <a href="https://www.cmi.edu/" target="_blank" rel="noopener noreferrer" aria-label="College of the Marshall Islands homepage">
+      <img src="img/cmi logo.avif" alt="CMI Logo" class="logo-img">
+    </a>
+    <h1 class="header-title">STEM Department</h1>
+  </div>
+
+  <!-- Mobile hamburger (shown on small screens) -->
+  <button class="hamburger" aria-label="Toggle navigation" aria-expanded="false" aria-controls="main-nav">
+  <span></span><span></span><span></span>
+  </button>
+
+  <!-- Second Row: Navigation Links -->
+  <nav id="main-nav" class="header-nav" role="navigation">
+    <ul>
+      <li><a href="index.html">Program</a></li>
+      <li><a href="ICTPathways.html">ICT Pathways</a></li>
+      <li><a href="courses.html">Courses</a></li>
+      <li><a href="instructors.html">Our Instructors</a></li>
+      <li><a href="enroll.html">Apply</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- Hero Section -->
+<section class="hero">
+  <div class="container">
+    <h2>Our Courses</h2>
+    <p class="courses-subtitle">Explore our hands-on, industry-relevant courses in ICT and Computing Science designed to prepare you for the future.</p>
+  </div>
+</section>
+
+<section class="courses container">
+    <h2>Courses</h2>
+  <!-- ICS100 -->
+  <div class="course-row">
+    <h3><i class="fa-solid fa-laptop"></i> ICS100 – Fundamental Concepts of Programming 🖥️</h3>
+    <p>Learn the basics of programming, including problem-solving, algorithms, and coding fundamentals using a popular programming language. This course lays the foundation for all future programming and software development courses.</p>
+  </div>
+
+  <!-- ICS110 -->
+  <div class="course-row">
+    <h3><i class="fa-solid fa-globe"></i> ICS110 – Introduction to Web Designing and Development 🌐</h3>
+    <p>Get hands-on experience in designing and developing websites. Learn HTML, CSS, JavaScript, and basic web development tools. Students will create responsive web pages and understand user experience fundamentals.</p>
+  </div>
+
+  <!-- ICS111 -->
+  <div class="course-row">
+    <h3><i class="fa-solid fa-network-wired"></i> ICS111 – Introduction to Computer Networks 📶</h3>
+    <p>Explore the basics of computer networking, including network architecture, protocols, and communication models. Understand how devices connect, share data, and operate over LANs, WANs, and the Internet.</p>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="container">
+      <p>&copy; <span id="year"></span> <a href="https://www.cmi.edu/" target="_blank" rel="noopener noreferrer">College of the Marshall Islands</a> – STEM Department. All rights reserved.</p>
+    </div>
+  </footer>
+
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+<script>
+(function() {
+  const btn = document.querySelector('.hamburger');
+  const nav = document.getElementById('main-nav') || document.querySelector('.header-nav');
+  if (!btn || !nav) return;
+
+  const MOBILE_BREAKPOINT = 768;
+  function setAria(open) {
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    btn.classList.toggle('is-active', open);
+  }
+
+  btn.addEventListener('click', () => {
+    const isOpen = nav.classList.toggle('open');
+    setAria(isOpen);
+  });
+
+  // Close nav when link clicked
+  nav.addEventListener('click', (e) => {
+    if (e.target.tagName === 'A' && nav.classList.contains('open')) {
+      nav.classList.remove('open');
+      setAria(false);
+    }
+  });
+
+  // Ensure nav closes if viewport becomes desktop
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > MOBILE_BREAKPOINT && nav.classList.contains('open')) {
+      nav.classList.remove('open');
+      setAria(false);
+    }
+  });
+
+  // Close on Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && nav.classList.contains('open')) {
+      nav.classList.remove('open');
+      setAria(false);
+      btn.focus();
+    }
+  });
+})();
+</script>
+</body>
+</html>

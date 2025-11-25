@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ICT & Computing Science Programs – STEM Department</title>
+<link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<header>
+  <!-- First Row: Logo + Title -->
+  <div class="header-top">
+    <a href="https://www.cmi.edu/" target="_blank" rel="noopener noreferrer" aria-label="College of the Marshall Islands homepage">
+      <img src="img/cmi logo.avif" alt="CMI Logo" class="logo-img">
+    </a>
+    <h1 class="header-title">STEM Department</h1>
+  </div>
+
+  <!-- Second Row: Navigation Links -->
+  <nav class="header-nav">
+    <ul>
+      <li><a href="index.html">Program</a></li>
+      <li><a href="ICTPathways.html">ICT Pathways</a></li>
+      <li><a href="courses.html">Courses</a></li>
+      <li><a href="instructors.html">Our Instructors</a></li>
+      <li><a href="enroll.html">Apply</a></li>
+    </ul>
+  </nav>
+</header>
+<body>
+  <main class="site-main">
+<section class="success container">
+  
+  <div class="checkmark-container">
+    <svg class="checkmark" viewBox="0 0 52 52">
+      <circle class="checkmark-circle" cx="26" cy="26" r="25" fill="none" />
+      <path class="checkmark-check" fill="none" d="M14 27l7 7 16-16" />
+    </svg>
+  </div>
+
+  <h2>Application Submitted Successfully!</h2>
+  <p>Thank you for applying to the ICT & Computing Science Programs.</p>
+  <p>You will receive a confirmation email shortly.</p>
+
+  <a class="cta-btn" href="index.html">Return to Home</a>
+
+</section>
+  </main>
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>&copy; <span id="year"></span> <a href="https://www.cmi.edu/" target="_blank" rel="noopener noreferrer">College of the Marshall Islands</a> – STEM Department. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+<script>
+  (function() {
+    const btn = document.querySelector('.hamburger');
+    const nav = document.getElementById('main-nav') || document.querySelector('.header-nav');
+    if (!btn || !nav) return;
+
+    btn.addEventListener('click', () => {
+      const isOpen = nav.classList.toggle('open');
+      btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+
+    nav.addEventListener('click', (e) => {
+      if (e.target.tagName === 'A') {
+        nav.classList.remove('open');
+        btn.setAttribute('aria-expanded', 'false');
+      }
+    });
+  })();
+</script>
+</body>
+</html>
