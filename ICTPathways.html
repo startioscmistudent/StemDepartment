@@ -7,24 +7,33 @@
 <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
-<!-- Header -->
 <header>
-  <div class="container header-container">
-    <!-- Logo Image Placeholder -->
-    <img src="img/cmi logo.avif" alt="CMI Logo" class="logo-img">
-    
-    <h1 class="logo">STEM Department</h1>
-    <nav>
-      <ul>
-        <li><a href="index.html">Program</a></li>
-        <li><a href="ICTPathways.html">ICT Pathways</a></li>
-        <li><a href="instructors.html">Our Faculty</a></li>
-        <li><a href="enroll.html">Apply</a></li>
-      </ul>
-    </nav>
+  <!-- First Row: Logo + Title -->
+  <div class="header-top">
+    <a href="https://www.cmi.edu/" target="_blank" rel="noopener noreferrer" aria-label="College of the Marshall Islands homepage">
+      <img src="img/cmi logo.avif" alt="CMI Logo" class="logo-img">
+    </a>
+    <h1 class="header-title">STEM Department</h1>
   </div>
-</header>
 
+  <!-- Mobile hamburger (shown on small screens) -->
+  <button class="hamburger" aria-label="Toggle navigation" aria-expanded="false" aria-controls="main-nav">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+  <!-- Second Row: Navigation Links -->
+  <nav id="main-nav" class="header-nav" role="navigation">
+    <ul>
+      <li><a href="index.html">Program</a></li>
+      <li><a href="ICTPathways.html">ICT Pathways</a></li>
+      <li><a href="courses.html">Courses</a></li>
+      <li><a href="instructors.html">Our Instructors</a></li>
+      <li><a href="enroll.html">Apply</a></li>
+    </ul>
+  </nav>
+</header>
   <!-- IT Pathways Image Section -->
 <section id="it-pathways" class="container" style="text-align:center; margin-top: 3rem;">
   <h2>ICT PATHWAYS</h2>
@@ -35,13 +44,32 @@
   <!-- Footer -->
   <footer>
     <div class="container">
-      <p>&copy; <span id="year"></span> College of the Marshall Islands – STEM Department. All rights reserved.</p>
+      <p>&copy; <span id="year"></span> <a href="https://www.cmi.edu/" target="_blank" rel="noopener noreferrer">College of the Marshall Islands</a> – STEM Department. All rights reserved.</p>
     </div>
   </footer>
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
-</body>
+<!-- Hamburger toggle script (placed before closing </body>) -->
+<script>
+  (function() {
+    const btn = document.querySelector('.hamburger');
+    const nav = document.getElementById('main-nav') || document.querySelector('.header-nav');
+    if (!btn || !nav) return;
 
+    btn.addEventListener('click', () => {
+      const isOpen = nav.classList.toggle('open');
+      btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+
+    nav.addEventListener('click', (e) => {
+      if (e.target.tagName === 'A') {
+        nav.classList.remove('open');
+        btn.setAttribute('aria-expanded', 'false');
+      }
+    });
+  })();
+</script>
+</body>
 </html>
