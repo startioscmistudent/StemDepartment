@@ -6,54 +6,102 @@
   <title>ICT & Computing Science Programs – STEM Department</title>
 <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
-<body>
-<!-- Header -->
 <header>
-  <div class="container header-container">
-    <!-- Logo Image Placeholder -->
-    <img src="img/cmi logo.avif" alt="CMI Logo" class="logo-img">
-    
-    <h1 class="logo">STEM Department</h1>
-    <nav>
-      <ul>
-        <li><a href="index.html">Program</a></li>
-        <li><a href="ICTPathways.html">ICT Pathways</a></li>
-        <li><a href="instructors.html">Our Faculty</a></li>
-        <li><a href="enroll.html">Apply</a></li>
-      </ul>
-    </nav>
+  <!-- First Row: Logo + Title -->
+  <div class="header-top">
+    <a href="https://www.cmi.edu/" target="_blank" rel="noopener noreferrer" aria-label="College of the Marshall Islands homepage">
+      <img src="img/cmi logo.avif" alt="CMI Logo" class="logo-img">
+    </a>
+    <h1 class="header-title">STEM Department</h1>
   </div>
+
+  <!-- Mobile hamburger (shown on small screens) -->
+  <button class="hamburger" aria-label="Toggle navigation" aria-expanded="false" aria-controls="main-nav">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+  <!-- Second Row: Navigation Links -->
+  <nav id="main-nav" class="header-nav">
+    <ul>
+      <li><a href="index.html">Program</a></li>
+      <li><a href="ICTPathways.html">ICT Pathways</a></li>
+      <li><a href="courses.html">Courses</a></li>
+      <li><a href="instructors.html">Our Instructors</a></li>
+      <li><a href="enroll.html">Apply</a></li>
+    </ul>
+  </nav>
 </header>
 
+<body>
+  <main class="site-main">
  <!-- Enrollment -->
-  <section id="enroll" class="cta container">
-    <h2>Ready to Apply?</h2>
-    <p>Take your first step toward a future in technology. Fill out the form below to register your interest.</p>
-    <form class="enroll-form" action="#" method="POST">
-      <div class="form-group">
-        <label for="name">Full Name:</label>
-        <input type="text" id="name" name="name" placeholder="Enter your full name" required>
-      </div>
+<section class="enroll container">
+  <h2>Apply for ICT & Computing Science Programs</h2>
+  <p>Take your first step toward a future in technology. Fill out the form below to submit your application.</p>
 
-      <div class="form-group">
-        <label for="email">Email Address:</label>
-        <input type="email" id="email" name="email" placeholder="Enter your email address" required>
-      </div>
+  <!-- Wrap form so it stays centered and not too wide -->
+  <div class="form-wrap">
+     <form id="enrollForm" action="https://formspree.io/f/mpweanqv" method="POST" class="enroll-form" novalidate>
+       <!-- Full Name -->
+       <div class="form-group">
+         <label for="fullname">Full Name</label>
+         <input id="fullname" name="name" type="text" placeholder="Spongebob SquarePants" required>
+       </div>
 
-      <button type="submit" class="cta-btn">Submit Application</button>
-    </form>
-  </section>
+       <!-- Email (optional — provide phone if you don't have email) -->
+       <div class="form-group">
+         <label for="email">Email Address (optional — provide phone if you don't have email)</label>
+         <input id="email" name="email" type="email" placeholder="you@example.com">
+       </div>
 
+       <!-- Phone (required if no email) -->
+       <div class="form-group">
+         <label for="phone">Phone Number (required if no email)</label>
+         <input id="phone" name="phone" type="tel" placeholder="(+1) 555-555-5555">
+       </div>
+
+       <!-- Spam Protection (hidden honeypot field) -->
+       <input type="text" name="_gotcha" style="display:none" aria-hidden="true">
+
+       <div id="formError" class="error-message" role="alert" aria-live="assertive" style="display:none;color:#b00020;margin-top:.5rem;"></div>
+
+       <button id="submitBtn" type="submit" class="cta-btn">Submit Application</button>
+     </form>
+  </div>
+</section>
+  </main>
     <!-- Footer -->
   <footer>
     <div class="container">
-      <p>&copy; <span id="year"></span> College of the Marshall Islands – STEM Department. All rights reserved.</p>
+      <p>&copy; <span id="year"></span> <a href="https://www.cmi.edu/" target="_blank" rel="noopener noreferrer">College of the Marshall Islands</a> – STEM Department. All rights reserved.</p>
     </div>
   </footer>
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
+<script>
+  (function() {
+    const btn = document.querySelector('.hamburger');
+    const nav = document.getElementById('main-nav') || document.querySelector('.header-nav');
+    if (!btn || !nav) return;
+
+    btn.addEventListener('click', () => {
+      const isOpen = nav.classList.toggle('open');
+      btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+
+    nav.addEventListener('click', (e) => {
+      if (e.target.tagName === 'A') {
+        nav.classList.remove('open');
+        btn.setAttribute('aria-expanded', 'false');
+      }
+    });
+  })();
+</script>
 </body>
 
 </html>
+
