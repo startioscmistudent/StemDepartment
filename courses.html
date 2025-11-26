@@ -18,7 +18,7 @@
 
   <!-- Mobile hamburger (shown on small screens) -->
   <button class="hamburger" aria-label="Toggle navigation" aria-expanded="false" aria-controls="main-nav">
-  <span></span><span></span><span></span>
+    <span></span><span></span><span></span>
   </button>
 
   <!-- Second Row: Navigation Links -->
@@ -42,132 +42,104 @@
 </section>
 
 <section class="courses container">
-    <h2>Courses</h2>
+  <h2>Courses</h2>
+
   <!-- ICS100 -->
   <div class="course-row">
     <h3><i class="fa-solid fa-laptop"></i> ICS100 – Fundamental Concepts of Programming 🖥️</h3>
     <p>Learn the basics of programming, including problem-solving, algorithms, and coding fundamentals using a popular programming language. This course lays the foundation for all future programming and software development courses.</p>
+
+    <!-- ICS100 GALLERY -->
+    <div class="course-gallery lightbox-gallery">
+      <figure>
+        <img src="img/987.png" alt="ICS100 student coding activity" onclick="openLightbox(3)">
+      </figure>
+
+      <figure>
+        <img src="img/654.png" alt="ICS100 programming lesson photo" onclick="openLightbox(4)">
+      </figure>
+    </div>
   </div>
 
   <!-- ICS110 -->
   <div class="course-row">
     <h3><i class="fa-solid fa-globe"></i> ICS110 – Introduction to Web Designing and Development 🌐</h3>
     <p>Get hands-on experience in designing and developing websites. Learn HTML, CSS, JavaScript, and basic web development tools. Students will create responsive web pages and understand user experience fundamentals.</p>
+
+    <!-- ICS110 GALLERY -->
+    <div class="course-gallery lightbox-gallery">
+      <figure>
+        <img src="img/123.jpg" alt="ICS110 student working on HTML project" onclick="openLightbox(5)">
+      </figure>
+
+      <figure>
+        <img src="img/456.jpg" alt="ICS110 web development activity" onclick="openLightbox(6)">
+      </figure>
+
+      <figure>
+        <img src="img/789.png" alt="ICS110 students coding in class" onclick="openLightbox(7)">
+      </figure>
+    </div>
   </div>
 
-<!-- ICS111 -->
-<div class="course-row">
-  <h3><i class="fa-solid fa-network-wired"></i> ICS111 – Introduction to Computer Networks 📶</h3>
-  <p>
-    Explore the basics of computer networking, including network architecture, protocols, and 
-    communication models. Understand how devices connect, share data, and operate over LANs, WANs, 
-    and the Internet. Students also gain hands-on experience with real cabling, network setup, 
-    and hardware installation.
-  </p>
+  <!-- ICS111 -->
+  <div class="course-row">
+    <h3><i class="fa-solid fa-network-wired"></i> ICS111 – Introduction to Computer Networks 📶</h3>
+    <p>
+      Explore the basics of computer networking, including network architecture, protocols,
+      communication models, LAN/WAN fundamentals, and real hands-on cabling and hardware setup.
+    </p>
 
-  <!-- Networking Lab Photo Gallery -->
-  <div class="course-gallery lightbox-gallery">
-    <figure>
-      <img src="img/1000006361.jpg" alt="Networking lab cabling installation" onclick="openLightbox(0)">
-      <figcaption></figcaption>
-    </figure>
+    <!-- Networking Lab Photo Gallery -->
+    <div class="course-gallery lightbox-gallery">
+      <figure>
+        <img src="img/1000006361.jpg" alt="Networking lab cabling installation" onclick="openLightbox(0)">
+      </figure>
 
-    <figure>
-      <img src="img/1000006338.jpg" alt="Student preparing ethernet cable wires" onclick="openLightbox(1)">
-      <figcaption></figcaption>
-    </figure>
+      <figure>
+        <img src="img/1000006338.jpg" alt="Student preparing ethernet cable wires" onclick="openLightbox(1)">
+      </figure>
 
-    <figure>
-      <img src="img/1000006339.jpg" alt="Network cables being installed along workstations" onclick="openLightbox(2)">
-      <figcaption></figcaption>
-    </figure>
+      <figure>
+        <img src="img/1000006339.jpg" alt="Network cables being installed along workstations" onclick="openLightbox(2)">
+      </figure>
+    </div>
   </div>
-</div>
-
 
 </section>
 
 <!-- Footer -->
 <footer>
   <div class="container">
-      <p>&copy; <span id="year"></span> <a href="https://www.cmi.edu/" target="_blank" rel="noopener noreferrer">College of the Marshall Islands</a> – STEM Department. All rights reserved.</p>
-    </div>
-  </footer>
+    <p>&copy; <span id="year"></span> <a href="https://www.cmi.edu/" target="_blank" rel="noopener noreferrer">College of the Marshall Islands</a> – STEM Department. All rights reserved.</p>
+  </div>
+</footer>
 
-
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
+</script>
 
 <!-- Lightbox Viewer -->
 <div id="lightbox" class="lightbox" onclick="closeLightbox(event)">
-  
   <img id="lightbox-img" src="" alt="Expanded view">
-  
   <p id="lightbox-caption" class="lightbox-caption"></p>
 
   <button class="lightbox-prev" onclick="prevImage(event)">&#10094;</button>
   <button class="lightbox-next" onclick="nextImage(event)">&#10095;</button>
 </div>
 
-
-<script>
-(function() {
-  const btn = document.querySelector('.hamburger');
-  const nav = document.getElementById('main-nav') || document.querySelector('.header-nav');
-  if (!btn || !nav) return;
-
-  const MOBILE_BREAKPOINT = 768;
-  function setAria(open) {
-    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
-    btn.classList.toggle('is-active', open);
-  }
-
-  btn.addEventListener('click', () => {
-    const isOpen = nav.classList.toggle('open');
-    setAria(isOpen);
-  });
-
-  // Close nav when link clicked
-  nav.addEventListener('click', (e) => {
-    if (e.target.tagName === 'A' && nav.classList.contains('open')) {
-      nav.classList.remove('open');
-      setAria(false);
-    }
-  });
-
-  // Ensure nav closes if viewport becomes desktop
-  window.addEventListener('resize', () => {
-    if (window.innerWidth > MOBILE_BREAKPOINT && nav.classList.contains('open')) {
-      nav.classList.remove('open');
-      setAria(false);
-    }
-  });
-
-  // Close on Escape key
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && nav.classList.contains('open')) {
-      nav.classList.remove('open');
-      setAria(false);
-      btn.focus();
-    }
-  });
-})();
-</script>
 <script>
 const galleryImages = [
-  {
-    src: "img/1000006361.jpg",
-    caption: ""
-  },
-  {
-    src: "img/1000006338.jpg",
-    caption: ""
-  },
-  {
-    src: "img/1000006339.jpg",
-    caption: ""
-  }
+  { src: "img/1000006361.jpg", caption: "" }, // ICS111
+  { src: "img/1000006338.jpg", caption: "" },
+  { src: "img/1000006339.jpg", caption: "" },
+
+  { src: "img/987.png", caption: "" }, // ICS100
+  { src: "img/654.png", caption: "" },
+
+  { src: "img/123.jpg", caption: "" }, // ICS110
+  { src: "img/456.jpg", caption: "" },
+  { src: "img/789.png", caption: "" }
 ];
 
 let currentIndex = 0;
@@ -185,7 +157,6 @@ function openLightbox(index) {
 }
 
 function closeLightbox(event) {
-  // prevent closing when clicking image/buttons
   if (event.target.id !== 'lightbox') return;
   document.getElementById('lightbox').style.display = "none";
 }
