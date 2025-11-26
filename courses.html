@@ -55,11 +55,36 @@
     <p>Get hands-on experience in designing and developing websites. Learn HTML, CSS, JavaScript, and basic web development tools. Students will create responsive web pages and understand user experience fundamentals.</p>
   </div>
 
-  <!-- ICS111 -->
-  <div class="course-row">
-    <h3><i class="fa-solid fa-network-wired"></i> ICS111 – Introduction to Computer Networks 📶</h3>
-    <p>Explore the basics of computer networking, including network architecture, protocols, and communication models. Understand how devices connect, share data, and operate over LANs, WANs, and the Internet.</p>
+<!-- ICS111 -->
+<div class="course-row">
+  <h3><i class="fa-solid fa-network-wired"></i> ICS111 – Introduction to Computer Networks 📶</h3>
+  <p>
+    Explore the basics of computer networking, including network architecture, protocols, and 
+    communication models. Understand how devices connect, share data, and operate over LANs, WANs, 
+    and the Internet. Students also gain hands-on experience with real cabling, network setup, 
+    and hardware installation.
+  </p>
+
+  <!-- Networking Lab Photo Gallery -->
+  <div class="course-gallery lightbox-gallery">
+    <figure>
+      <img src="img/1000006361.jpg" alt="Networking lab cabling installation" onclick="openLightbox(0)">
+      <figcaption></figcaption>
+    </figure>
+
+    <figure>
+      <img src="img/1000006338.jpg" alt="Student preparing ethernet cable wires" onclick="openLightbox(1)">
+      <figcaption></figcaption>
+    </figure>
+
+    <figure>
+      <img src="img/1000006339.jpg" alt="Network cables being installed along workstations" onclick="openLightbox(2)">
+      <figcaption></figcaption>
+    </figure>
   </div>
+</div>
+
+
 </section>
 
 <!-- Footer -->
@@ -73,6 +98,19 @@
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
+
+<!-- Lightbox Viewer -->
+<div id="lightbox" class="lightbox" onclick="closeLightbox(event)">
+  
+  <img id="lightbox-img" src="" alt="Expanded view">
+  
+  <p id="lightbox-caption" class="lightbox-caption"></p>
+
+  <button class="lightbox-prev" onclick="prevImage(event)">&#10094;</button>
+  <button class="lightbox-next" onclick="nextImage(event)">&#10095;</button>
+</div>
+
+
 <script>
 (function() {
   const btn = document.querySelector('.hamburger');
@@ -116,5 +154,54 @@
   });
 })();
 </script>
+<script>
+const galleryImages = [
+  {
+    src: "img/1000006361.jpg",
+    caption: ""
+  },
+  {
+    src: "img/1000006338.jpg",
+    caption: ""
+  },
+  {
+    src: "img/1000006339.jpg",
+    caption: ""
+  }
+];
+
+let currentIndex = 0;
+
+function openLightbox(index) {
+  currentIndex = index;
+  const lightbox = document.getElementById('lightbox');
+  const img = document.getElementById('lightbox-img');
+  const caption = document.getElementById('lightbox-caption');
+
+  img.src = galleryImages[index].src;
+  caption.textContent = galleryImages[index].caption;
+
+  lightbox.style.display = "flex";
+}
+
+function closeLightbox(event) {
+  // prevent closing when clicking image/buttons
+  if (event.target.id !== 'lightbox') return;
+  document.getElementById('lightbox').style.display = "none";
+}
+
+function nextImage(event) {
+  event.stopPropagation();
+  currentIndex = (currentIndex + 1) % galleryImages.length;
+  openLightbox(currentIndex);
+}
+
+function prevImage(event) {
+  event.stopPropagation();
+  currentIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
+  openLightbox(currentIndex);
+}
+</script>
+
 </body>
 </html>
