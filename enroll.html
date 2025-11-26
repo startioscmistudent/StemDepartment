@@ -42,88 +42,100 @@
       <p>Take your first step toward a future in technology. Fill out the form below to submit your application.</p>
 
       <div class="form-wrap">
-        <form id="enrollForm" action="https://formspree.io/f/mpweanqv" method="POST" class="enroll-form" novalidate>
-          <!-- Full Name -->
-          <div class="form-group">
-            <label for="fullname">Full Name</label>
-            <input id="fullname" name="name" type="text" placeholder="Spongebob SquarePants" required>
-          </div>
+<form id="enrollForm" class="enroll-form" novalidate>
+  <!-- Full Name -->
+  <div class="form-group">
+    <label for="fullname">Full Name</label>
+    <input id="fullname" name="name" type="text" placeholder="Spongebob SquarePants" required>
+  </div>
 
-          <!-- Email (optional — provide phone if you don't have email) -->
-          <div class="form-group">
-            <label for="email">Email Address (optional — provide phone if you don't have email)</label>
-            <input id="email" name="email" type="email" placeholder="you@example.com">
-          </div>
+  <!-- Email -->
+  <div class="form-group">
+    <label for="email">Email Address (optional — provide phone if you don't have email)</label>
+    <input id="email" name="email" type="email" placeholder="you@example.com">
+  </div>
 
-          <!-- Phone (required if no email) -->
-          <div class="form-group">
-            <label for="phone">Phone Number (required if no email)</label>
-            <input id="phone" name="phone" type="tel" placeholder="(+1) 555-555-5555">
-          </div>
+  <!-- Phone -->
+  <div class="form-group">
+    <label for="phone">Phone Number (required if no email)</label>
+    <input id="phone" name="phone" type="tel" placeholder="(+1) 555-555-5555">
+  </div>
 
-          <!-- spam protection: honeypot -->
-          <input type="text" name="_gotcha" style="display:none" aria-hidden="true">
+  <!-- Honeypot -->
+  <input type="text" name="_gotcha" style="display:none" aria-hidden="true">
 
-          <div id="formError" class="error-message" role="alert" aria-live="assertive" style="display:none;color:#b00020;margin-top:.5rem;"></div>
+  <div id="formError" class="error-message" role="alert" aria-live="assertive" style="display:none;color:#b00020;margin-top:.5rem;"></div>
 
-          <button id="submitBtn" type="submit" class="cta-btn">Submit Application</button>
-        </form>
-      </div>
-    </section>
-    <script>
-      (function() {
-        const form = document.getElementById('enrollForm');
-        const submitBtn = document.getElementById('submitBtn');
-        const formError = document.getElementById('formError');
+  <button id="submitBtn" type="submit" class="cta-btn">Submit Application</button>
+</form>
 
-        function showError(msg) {
-          formError.textContent = msg;
-          formError.style.display = 'block';
-        }
-        function clearError() {
-          formError.textContent = '';
-          formError.style.display = 'none';
-        }
+<script>
+(function() {
+  const form = document.getElementById('enrollForm');
+  const submitBtn = document.getElementById('submitBtn');
+  const formError = document.getElementById('formError');
 
-        form.addEventListener('submit', function(e) {
-          e.preventDefault();
-          clearError();
+  // ⭐ REPLACE THIS WITH YOUR GOOGLE SCRIPT URL
+  const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzljqBG5GLMgb047n6ilbb4OPjw-zJ5s3RbFva94E5NXwiIcY8Dmb1AbdiJ-F1hL8Zs/exec";
 
-          const email = (form.querySelector('#email') || {}).value || '';
-          const phone = (form.querySelector('#phone') || {}).value || '';
+  function showError(msg) {
+    formError.textContent = msg;
+    formError.style.display = 'block';
+  }
+  
+  function clearError() {
+    formError.textContent = '';
+    formError.style.display = 'none';
+  }
 
-          // Require either an email OR a phone number
-          if (!email.trim() && !phone.trim()) {
-            showError('Please provide an email address or a phone number so we can contact you.');
-            return;
-          }
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    clearError();
 
-          submitBtn.disabled = true;
-          const originalText = submitBtn.textContent;
-          submitBtn.textContent = 'Submitting...';
+    const email = form.querySelector('#email').value.trim();
+    const phone = form.querySelector('#phone').value.trim();
+    const honeypot = form.querySelector('input[name="_gotcha"]').value;
 
-          fetch(form.action, {
-            method: 'POST',
-            body: new FormData(form),
-            headers: { 'Accept': 'application/json' }
-          })
-          .then(response => {
-            if (response.ok) {
-              // Successful submission — redirect to success page
-              window.location.href = 'success.html';
-            } else {
-              return response.json().then(err => Promise.reject(err));
-            }
-          })
-          .catch((err) => {
-            console.error(err);
-            showError('There was a problem submitting the form. Please try again.');
-            submitBtn.disabled = false;
-            submitBtn.textContent = originalText;
-          });
-        });
-      })();
-    </script>
+    // Spam bot caught
+    if (honeypot) return;
+
+    // Require at least email or phone
+    if (!email && !phone) {
+      showError('Please provide an email address or a phone number so we can contact you.');
+      return;
+    }
+
+    submitBtn.disabled = true;
+    const originalText = submitBtn.textContent;
+    submitBtn.textContent = 'Submitting...';
+
+    // Collect form data into JSON
+    const data = {
+      name: form.querySelector('#fullname').value,
+      email: email,
+      phone: phone
+    };
+
+    try {
+      await fetch(GOOGLE_SCRIPT_URL, {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+      });
+
+      // Redirect to success page
+      window.location.href = 'success.html';
+
+    } catch (err) {
+      console.error(err);
+      showError('There was a problem submitting the form. Please try again.');
+      submitBtn.disabled = false;
+      submitBtn.textContent = originalText;
+    }
+  });
+})();
+</script>
   </main>
   <!-- Footer -->
   <footer>
